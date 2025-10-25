@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Matemático</title>
+</head>
+<body>
+    <h2>Bem Vindo ao Portal Mátemático</h2>
+    <p>Aplicação criada para auxiliar no cálculo rápido de potenciação e radiciação de um número. </p>
+    <form action="{{url_for('index')}}" method='POST'>
+        <label for="opcao">Escolha uma operação:</label>
+        <select id="opcao" name="opcao">
+            <option value="potenciacao">Potenciação</option> 
+            <option value="radiciacao">Radiciação</option>
+        </select>
+        <input type="number" id="num" name="num" required placeholder="Digite um número de inteiro positivo: ">
+        <button type="submit">Calcular</button>
+    </form>
+    
+    {% if erro %}
+        <p style="color:red;"><strong>Erro:</strong> {{erro}}</p>
+    
+    {% elif resultado is not none %}
+        {% if opcao_escolhida == 'potenciacao' %}
+            <p><strong>Potenciação:</strong> {{resultado}}</p>
+        {% elif opcao_escolhida == 'radiciacao' %}
+            <p><strong>Radiciação:</strong> {{resultado}}</p>
+        {% endif %} 
+    
+    {% endif %}
+    
+</body>
+</html>
